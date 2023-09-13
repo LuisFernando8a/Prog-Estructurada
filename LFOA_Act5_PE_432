@@ -1,0 +1,142 @@
+//Ochoa Angulo Luis Fernando 372746
+//12-09-23    12-09-23
+//Algoritmo que contiene un menu de distintas opciones para el usuario
+//LFOA_Act5_01_432
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#define N 35
+
+void orden_asc(void)
+{
+    int n;
+    printf("Ingrese hasta que numero desea llegar: ");
+    scanf("%d", &n);
+    if(n<=0)
+    {
+        printf("Tiene que ser numeros positivos.");
+    }
+    else
+    {
+        for (int i = n - 1; i > 0; i--)
+        {
+            printf("%d\n",i);
+        }
+        printf("Estos son los numeros positivos anteriores a n = %d\n",n);
+    }
+}
+
+void par_impar()
+{
+    int num, num_mayor, num_menor, i, sum_par,sum_impar;
+    sum_impar = 0;
+    sum_par = 0;
+    num_menor = 200;
+    srand(time(NULL));
+    for (i = 0; i < 40;)
+    {
+
+        num = (rand() % 201);
+
+        printf("\n [%d] %d ", i + 1, num);
+        if (num % 2 == 0)
+        {
+            printf("Par");
+            sum_par = sum_par + num;
+        }
+        else
+        {
+            printf("Impar");
+            sum_impar = sum_impar + num;
+        }
+        i += 1;
+    }
+    printf("\nSuma total de pares: %d", sum_par);
+    printf("\nSuma total de impares: %d", sum_impar);
+
+}
+
+void par_impar2()
+{
+    int i, num[N], num_may = 100, num_men = 200;
+    srand(time(NULL));
+    for(i = 0; i < N; i++)
+    {
+        num[i] = rand()% 101+100;
+        printf("%d-%d\n",i, num[i]);
+        if(num[i] > num_may)
+        {
+            num_may = num[i];
+        }
+        if(num[i] < num_men)
+        {
+            num_men = num[i];
+        }
+    }
+    printf("El numero maximo es: %d\n", num_may);
+    printf("El numero minimo es: %d\n", num_men);
+
+}
+
+void tablas(void)
+{
+    int tabla,i,resul;
+    printf("Tabla de multiplicar que deseas: ");
+    scanf("%d",&tabla);
+    if(tabla >= 1 && tabla <=20 )
+    {
+        for(i=1;i<=10;i++)
+        {
+            resul = tabla * i;
+            printf("%d * %d = %d \n",tabla,i,resul);
+        }
+    }
+    else
+    {
+        printf("ERROR");
+    }
+
+}
+int main()
+{
+    int opc;
+    printf(" Bienvenido al menu\n ");
+    do {
+        printf("Elige una de las opciones:\n");
+        printf("1.- Desplegar numeros anteriores al numero dado.\n");
+        printf("2.- Numeros aleatorios del 0-200.\n");
+        printf("3.- Numeros aleatorios del 100-200.\n");
+        printf("4.- Tablas de multiplicar.\n");
+        printf("0.- Salir.\n");
+        scanf("%d", &opc);
+        
+        switch (opc) {
+            case 1:
+            orden_asc();
+            break;
+            
+            case 2:
+            par_impar();
+            break;
+            
+            case 3:
+            par_impar2();
+            break;
+            
+            case 4:
+            tablas();
+            break;
+            
+            case 0:
+            printf("Saliendo.\n");
+            break;
+            
+            default:
+            printf("ERROR. \n");
+            break;
+        }
+    } while (opc != 0);
+
+    return 0;
+}
